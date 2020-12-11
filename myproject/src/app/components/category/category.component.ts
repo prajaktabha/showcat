@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { TutorialService } from "src/app/services/tutorial.service";
 import { Category } from "src/app/models/category.model";
 import { Tutorial } from "src/app/models/tutorial.model";
+import { CategoryService } from "src/app/services/category.service";
 
 @Component({
   selector: "app-category",
@@ -9,19 +10,10 @@ import { Tutorial } from "src/app/models/tutorial.model";
   styleUrls: ["./category.component.scss"],
 })
 export class CategoryComponent implements OnInit {
-  // currentCategory?: Category;
-
-  // quizes?: Tutorial[];
-
-  // categories?: Category[];
-
-  // categories: Category = {
-  //   category: " ",
-  // };
-  tutorials?: Tutorial[];
+  categories?: Category[];
   currentTutorial?: Category;
   currentIndex = -1;
-  constructor(private categoryservice:TutorialService) {}
+  constructor(private categoryservice: CategoryService) {}
 
   ngOnInit(): void {
     this.retrieveCategories();
@@ -56,15 +48,15 @@ export class CategoryComponent implements OnInit {
   // }
 
   retrieveCategories(): void {
-    this.categoryservice.getCat()
-      .subscribe(
-        data => {
-          this.tutorials = data;
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        });
+    this.categoryservice.getAll().subscribe(
+      (data) => {
+        this.categories = data;
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
   refreshList(): void {
     this.retrieveCategories();
@@ -72,13 +64,9 @@ export class CategoryComponent implements OnInit {
     this.currentIndex = -1;
   }
 
-  setActiveTutorial(tutorial: Category, index: number): void {
-    this.currentTutorial = tutorial;
+  setActiveTutorial(cat: Category, index: number): void {
+    console.log(cat);
+    this.currentTutorial = cat;
     this.currentIndex = index;
   }
-
-
-
-
-
 }

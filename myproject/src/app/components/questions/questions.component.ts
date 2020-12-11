@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Question } from "src/app/models/questions.model";
 import { QuestionsService } from "src/app/services/questions.service";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-questions",
@@ -15,7 +15,10 @@ export class QuestionsComponent implements OnInit {
   type: any;
   submitted = false;
 
-  constructor(private questionservice: QuestionsService,private router: Router) {}
+  constructor(
+    private questionservice: QuestionsService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     // this.getQuizName();
@@ -62,7 +65,13 @@ export class QuestionsComponent implements OnInit {
   // }
 
   addQuestion() {
+    if (typeof this.que.answer == "undefined") {
+      console.log("This is if");
+      alert("Please select the answer");
+      return;
+    }
     this.submitted = true;
+    console.log(this.que.answer, this.quizname);
     this.que.quizname = this.quizname;
     console.log(this.que, "This is from form");
     this.questionservice.addQuestion(this.que).subscribe((data) => {
@@ -71,9 +80,9 @@ export class QuestionsComponent implements OnInit {
     });
   }
 
-  btnClick(){
-    this.router.navigate(['/bt']);
-}
+  btnClick() {
+    this.router.navigate(["/categories"]);
+  }
   // getQuizName() {
   //   return this.questionservice.getQuizName().subscribe((que) => {
   //     this.quizname = que;

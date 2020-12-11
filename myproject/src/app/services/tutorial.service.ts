@@ -5,7 +5,7 @@ import { Tutorial } from "../models/tutorial.model";
 import { Category } from '../models/category.model';
 
 const baseUrl = "http://localhost:8080/api/quizes";
-const url = "https://localhost:8080/api/categories";
+
 
 const httpOptions = {
   headers: new HttpHeaders({ "Content-Type": "application/json" }),
@@ -28,9 +28,6 @@ export class TutorialService {
   }
 
 
-  getCat(): Observable<Category[]> {
-    return this.http.get<Category[]>(url);
-  }
  
   addQuize(question: Tutorial): Observable<Tutorial> {
     console.log(question, "This is a question");

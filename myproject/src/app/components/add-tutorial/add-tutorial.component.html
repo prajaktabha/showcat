@@ -31,7 +31,7 @@
               <div class="form-group">
                 <label for="time">time</label>
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   id="time"
                   placeholder="time"
@@ -40,6 +40,7 @@
                   name="time"
                   #time="ngModel"
                 />
+                <!-- <time datetime="quiz.time" [(ngModel)]="quiz.time"  #time="ngModel"></time> -->
                 <div
                   [hidden]="time.valid || time.pristine"
                   class="alert alert-danger"
@@ -90,6 +91,14 @@
                 >
                   Add
                 </button>
+                <!-- <button
+                  type="button"
+                  class="btn btn-dark"
+                  (click)="create(quiz.quizname)"
+                  
+                >
+                  create
+                </button> -->
               </div>
             </form>
           </div>

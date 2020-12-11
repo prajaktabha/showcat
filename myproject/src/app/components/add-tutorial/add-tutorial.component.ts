@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Tutorial } from "src/app/models/tutorial.model";
 import { TutorialService } from "src/app/services/tutorial.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-add-tutorial",
@@ -25,7 +26,7 @@ export class AddTutorialComponent implements OnInit {
   category : any;
   submitted = false;
   
-  constructor(private tutorialService: TutorialService) {}
+  constructor(private tutorialService: TutorialService,private router: Router) {}
 
 
   ngOnInit(): void {
@@ -54,6 +55,11 @@ export class AddTutorialComponent implements OnInit {
       // alert(data);
     })
   }
+
+  // create(quizname:any)
+  // {
+  //   this.router.navigate(['/question/'+quizname])
+  // }
 
   // saveTutorial(): void {
   //   const data = {
