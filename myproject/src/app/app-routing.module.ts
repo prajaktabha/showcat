@@ -16,7 +16,7 @@ const routes: Routes = [
   { path:'bt/:id',component:BtComponent},
   { path:'categories',component:CategoryComponent},
   { path:'abc/:id',component:AppComponent},
-  { path:'question',component:QuestionsComponent}
+  { path:'question/:quizname',component:QuestionsComponent}
   // {path:'mcq',component:McqbtComponent},
   // {path:'descriptive',component:McqdesComponent}
   

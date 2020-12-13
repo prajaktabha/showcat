@@ -1,7 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
     const Quize = sequelize.define("quize", {
       quizname: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       time: {
         type: Sequelize.TIME
@@ -17,7 +18,6 @@ module.exports = (sequelize, Sequelize) => {
             key:'id'
         }
     }
-      
       
     },
     {

@@ -86,7 +86,7 @@
                 <button
                   type="button"
                   class="btn btn-dark"
-                  (click)="addQuize()"
+                  (click)="addQuize(quiz)"
                   [disabled]="!addQuestionForm.form.valid"
                 >
                   Add
@@ -102,11 +102,11 @@
               </div>
             </form>
           </div>
-          <div *ngIf="submitted">
+          <!-- <div *ngIf="submitted">
             <div>
               <app-questions [quizname]="quiz.quizname"></app-questions>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

@@ -46,13 +46,28 @@ export class AddTutorialComponent implements OnInit {
   }
 
   
-  addQuize(){
+  addQuize(id:any){
     
-    this.submitted = true;
     console.log(this.quiz, "This is from form")
     this.tutorialService.addQuize(this.quiz).subscribe(data=>{
-      console.log(data);
-      // alert(data);
+      if(Array.isArray(data) === true )
+      {
+        console.log(data);
+        this.submitted = true;
+      }
+      else
+      {
+      //   if(data.hasOwnProperty("original") && data.original.code !== "ER_DUP_ENTRY" )
+      // {
+  console.log(data);
+  this.submitted = false;
+  alert("This is duplicate entry......")
+      // }
+       
+      }
+   
+      console.log(id)
+      this.router.navigate(['/question/'+id.quizname])
     })
   }
 

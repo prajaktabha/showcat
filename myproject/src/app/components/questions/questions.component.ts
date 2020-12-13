@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Question } from "src/app/models/questions.model";
 import { QuestionsService } from "src/app/services/questions.service";
 import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-questions",
@@ -17,52 +18,17 @@ export class QuestionsComponent implements OnInit {
 
   constructor(
     private questionservice: QuestionsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    // this.getQuizName();
-    // this.getCategoryName();
+   
     this.getTypeName();
+    this.quizname=this.route.snapshot.paramMap.get("quizname")
   }
 
-  // saveTutorial(): void {
-  //   const data = {
-  //     questions: this.question.questions,
-  //     option1: this.question.option1,
-  //     option2: this.question.option2,
-  //     option3: this.question.option3,
-  //     option4: this.question.option4,
-  //     answer: this.question.answer,
-  //     quizid:this.question.quizid,
-  //     typeid:this.question.typeid
-  //   };
-
-  //   this.questionservice.create(data)
-  //     .subscribe(
-  //       response => {
-  //         console.log(response);
-  //         this.submitted = true;
-  //       },
-  //       error => {
-  //         console.log(error);
-  //       });
-  // }
-
-  // newTutorial(): void {
-  //   this.submitted = false;
-  //   this.question = {
-  //   questions: '',
-  //   option1: '',
-  //   option2: '',
-  //   option3:'',
-  //   option4:'',
-  //   answer:'',
-  //   quizid:'',
-  //   typeid:''
-
-  //   };
-  // }
+  
 
   addQuestion() {
     if (typeof this.que.answer == "undefined") {
@@ -83,19 +49,7 @@ export class QuestionsComponent implements OnInit {
   btnClick() {
     this.router.navigate(["/categories"]);
   }
-  // getQuizName() {
-  //   return this.questionservice.getQuizName().subscribe((que) => {
-  //     this.quizname = que;
-  //     console.log(this.quizname);
-  //   });
-  // }
-
-  // getCategoryName() {
-  //   return this.questionservice.getCategoryName().subscribe((que) => {
-  //     this.category = que;
-  //     console.log(this.category);
-  //   });
-  // }
+  
 
   getTypeName() {
     return this.questionservice.getTypeName().subscribe((que) => {
